@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kulswamini Bangales and Jewellery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 18px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff1f5, #fce4ec);
+            color: #49313b;
+        }
+
+        .review-card {
+            width: 100%;
+            max-width: 430px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 8px 28px rgba(150, 55, 95, 0.13);
+        }
+
+        .shop-icon {
+            font-size: 40px;
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #a83263;
+            font-size: 25px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            color: #78616b;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .rating-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .rating-option {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .rating-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .rating-box {
+            display: block;
+            padding: 15px 5px;
+            text-align: center;
+            border: 2px solid #f0d5df;
+            border-radius: 14px;
+            background: #fff8fa;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        .rating-option input:checked + .rating-box {
+            border-color: #ad3267;
+            background: #fce4ec;
+            box-shadow: 0 0 0 2px #fce4ec;
+        }
+
+        .rating-option input:focus-visible + .rating-box {
+            outline: 2px solid #ad3267;
+            outline-offset: 3px;
+        }
+
+        .comment-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 13px;
+            border: 1.5px solid #f0d5df;
+            border-radius: 12px;
+            background: #fff8fa;
+            cursor: pointer;
+            line-height: 1.5;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .comment-option:has(input:checked) {
+            border-color: #ad3267;
+            background: #fce4ec;
+        }
+
+        .comment-option input {
+            margin-top: 4px;
+            accent-color: #ad3267;
+            flex-shrink: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #ad3267, #84234c);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.92;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 8px;
+            background: #fff0f0;
+            color: #a32626;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 18px;
+            text-align: center;
+            color: #927b85;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="review-card">
+
+    <div style="text-align: center;">
+        <div class="shop-icon">💎</div>
+
+        <h1>Kulswamini Bangales and Jewellery</h1>
+
+        <p class="subtitle">
+            Thank you for visiting us! 💗<br>
+            Share your experience in just 3 clicks.
+        </p>
+    </div>
+
+    <p class="message"
+       th:if="${message}"
+       th:text="${message}">
+    </p>
+
+    <form th:action="@{/submit-review}" method="post">
+
+        <input type="hidden"
+               th:if="${_csrf != null}"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}">
+
+        <h3 class="section-title">1. How was your experience?</h3>
+
+        <div class="rating-options">
+
+            <label class="rating-option">
+                <input type="radio"
+                       name="rating"
+                       value="3"
+                       required>
+                <span class="rating-box">⭐⭐⭐<br>Good</span>
+            </label>
+
+            <label class="rating-option">
+                <input type="radio"
+                       name="rating"
+                       value="4"
+                       required>
+                <span class="rating-box">⭐⭐⭐⭐<br>Very Good</span>
+            </label>
+			
+			<label class="rating-option">
+			    <input type="radio"
+			           name="rating"
+			           value="5"
+			           required>
+			    <span class="rating-box">⭐⭐⭐⭐⭐<br>Excellent</span>
+			</label>
+        </div>
+
+        <h3 class="section-title">2. Choose one comment</h3>
+
+        <p class="subtitle">
+            Select the option that best matches your experience.
+        </p>
+
+        <div th:each="comment, stat : ${commentOptions}">
+
+            <label class="comment-option">
+
+                <input type="radio"
+                       name="comment"
+                       th:value="${comment}"
+                       required>
+
+                <span th:text="${comment}"></span>
+
+            </label>
+
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Submit Feedback 💗
+        </button>
+
+    </form>
+
+    <div class="footer">
+        Your feedback helps us serve you better.
+    </div>
+
+</div>
+
+</body>
+</html>

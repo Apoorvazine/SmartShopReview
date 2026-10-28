@@ -1,0 +1,115 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thank You - Kulswamini Bangales and Jewellery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #fff4f7;
+            color: #49313b;
+        }
+
+        .thankyou-card {
+            width: 100%;
+            max-width: 430px;
+            padding: 35px 25px;
+            text-align: center;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 5px 25px #e8cbd5;
+        }
+
+        .heart {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #a83263;
+            font-size: 27px;
+        }
+
+        p {
+            color: #78616b;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .google-btn {
+            display: block;
+            margin-top: 25px;
+            padding: 14px;
+            background: #ad3267;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            margin-top: 18px;
+            color: #a83263;
+            text-decoration: none;
+        }
+
+        .note {
+            margin-top: 18px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="thankyou-card">
+
+        <div class="heart">💖</div>
+
+        <h1>Thank You!</h1>
+
+        
+
+       <p>Thanks for sharing the love! 💖</p>
+
+		
+		<a class="google-btn"
+		   href="https://share.google/Zqh18FuS0JJtkT4KQ"
+		   target="_blank"
+		   rel="noopener noreferrer">
+		    Write a Google Review ⭐
+		</a>
+
+		<p class="note">
+			 <strong>Your Experience, Your Words 💗</strong><br>
+			We'd love to hear about your visit to Kulswamini Bangales and Jewellery.
+		</p>
+
+        <a class="home-btn" th:href="@{/}">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>
+```
