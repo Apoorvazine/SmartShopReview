@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -77,7 +77,8 @@
             border: 2px solid #f0d5df;
             border-radius: 14px;
             background: #fff8fa;
-            font-size: 16px;
+            font-size: 14px;
+            line-height: 1.8;
             transition: 0.2s;
         }
 
@@ -95,7 +96,7 @@
         .review-btn {
             display: block;
             width: 100%;
-            margin-top: 22px;
+            margin-top: 25px;
             padding: 15px;
             border: none;
             border-radius: 13px;
@@ -104,7 +105,6 @@
             font-size: 17px;
             font-weight: bold;
             text-align: center;
-            text-decoration: none;
             cursor: pointer;
         }
 
@@ -131,81 +131,87 @@
 
 <body>
 
-<div class="review-card">
+    <div class="review-card">
 
-    <div style="text-align: center;">
+        <div style="text-align: center;">
+            <div class="shop-icon">💗</div>
 
-        <div class="shop-icon">💗</div>
+            <h1>Kulswamini Bangales and Jewellery</h1>
 
-        <h1>Kulswamini Bangales and Jewellery</h1>
+            <p class="subtitle">
+                Thank you for visiting us! 💖
+                <br>
+                We would love to hear about your experience.
+            </p>
+        </div>
+
+        <h3 class="section-title">
+            How was your experience?
+        </h3>
+
+        <div class="rating-options">
+
+            <label class="rating-option">
+                <input type="radio" name="rating" value="3" required>
+                <span class="rating-box">
+                    ⭐⭐⭐<br>Good
+                </span>
+            </label>
+
+            <label class="rating-option">
+                <input type="radio" name="rating" value="4" required>
+                <span class="rating-box">
+                    ⭐⭐⭐⭐<br>Very Good
+                </span>
+            </label>
+
+            <label class="rating-option">
+                <input type="radio" name="rating" value="5" required>
+                <span class="rating-box">
+                    ⭐⭐⭐⭐⭐<br>Excellent
+                </span>
+            </label>
+
+        </div>
 
         <p class="subtitle">
-            Thank you for visiting us! 💖
-            <br>
-            We would love to hear about your experience.
+            Share your honest experience on Google.
+            Your feedback helps other customers discover our shop.
         </p>
 
-    </div>
+        <button type="button" class="review-btn"
+            onclick="openGoogleReview()">
+            Submit &amp; Continue ↗
+        </button>
 
-    <h3 class="section-title">1. How was your experience?</h3>
+        <p class="note">
+            Your Google review is optional. You can share your
+            honest experience directly on Google.
+        </p>
 
-    <div class="rating-options">
-
-        <label class="rating-option">
-            <input type="radio" name="rating" value="3" required>
-            <span class="rating-box">⭐⭐⭐<br>Good</span>
-        </label>
-
-        <label class="rating-option">
-            <input type="radio" name="rating" value="4" required>
-            <span class="rating-box">⭐⭐⭐⭐<br>Very Good</span>
-        </label>
-
-        <label class="rating-option">
-            <input type="radio" name="rating" value="5" required>
-            <span class="rating-box">⭐⭐⭐⭐⭐<br>Excellent</span>
-        </label>
+        <div class="footer">
+            Thank you for supporting our shop! 💗
+        </div>
 
     </div>
 
-    <h3 class="section-title">2. Share Your Experience on Google</h3>
+    <script>
+        function openGoogleReview() {
 
-    <p class="subtitle">
-        Your honest feedback helps us improve our service
-        and helps other customers discover our shop.
-    </p>
+            const rating = document.querySelector(
+                'input[name="rating"]:checked'
+            );
 
-    <button type="button" class="review-btn" onclick="openGoogleReview()">
-        Write a Google Review ↗
-    </button>
+            if (!rating) {
+                alert("Please select your rating first.");
+                return;
+            }
 
-    <p class="note">
-        Please share your honest experience on Google.
-        Your review is completely your choice.
-    </p>
-
-    <div class="footer">
-        Thank you for supporting our shop! 💗
-    </div>
-
-</div>
-
-<script>
-    function openGoogleReview() {
-        const rating = document.querySelector('input[name="rating"]:checked');
-
-        if (!rating) {
-            alert("Please select your rating first.");
-            return;
+            window.location.href =
+                "https://share.google/Zqh18FuS0JJtkT4KQ";
         }
-
-        window.open(
-            "https://share.google/Zqh18FuS0JJtkT4KQ",
-            "_blank",
-            "noopener,noreferrer"
-        );
-    }
-</script>
+    </script>
 
 </body>
 </html>
+```
