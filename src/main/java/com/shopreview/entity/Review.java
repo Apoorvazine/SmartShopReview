@@ -1,15 +1,11 @@
 
 package com.shopreview.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "reviews")
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  
     private Long id;
 
     private String customerName;
@@ -18,7 +14,6 @@ public class Review {
 
     private int rating;
 
-    @Column(length = 1000)
     private String feedback;
 
     private String status = "PENDING";

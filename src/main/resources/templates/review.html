@@ -57,7 +57,7 @@
 
         .rating-options {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .rating-option {
@@ -77,7 +77,7 @@
             border: 2px solid #f0d5df;
             border-radius: 14px;
             background: #fff8fa;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.2s;
         }
 
@@ -92,35 +92,10 @@
             outline-offset: 3px;
         }
 
-        .comment-option {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 10px 0;
-            padding: 13px;
-            border: 1.5px solid #f0d5df;
-            border-radius: 12px;
-            background: #fff8fa;
-            cursor: pointer;
-            line-height: 1.5;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .comment-option:has(input:checked) {
-            border-color: #ad3267;
-            background: #fce4ec;
-        }
-
-        .comment-option input {
-            margin-top: 4px;
-            accent-color: #ad3267;
-            flex-shrink: 0;
-        }
-
-        .submit-btn {
+        .review-btn {
+            display: block;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 22px;
             padding: 15px;
             border: none;
             border-radius: 13px;
@@ -128,19 +103,21 @@
             color: white;
             font-size: 17px;
             font-weight: bold;
+            text-align: center;
+            text-decoration: none;
             cursor: pointer;
         }
 
-        .submit-btn:hover {
+        .review-btn:hover {
             opacity: 0.92;
         }
 
-        .message {
-            padding: 10px;
-            border-radius: 8px;
-            background: #fff0f0;
-            color: #a32626;
-            font-size: 14px;
+        .note {
+            margin-top: 15px;
+            color: #927b85;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: center;
         }
 
         .footer {
@@ -157,89 +134,78 @@
 <div class="review-card">
 
     <div style="text-align: center;">
-        <div class="shop-icon">💎</div>
+
+        <div class="shop-icon">💗</div>
 
         <h1>Kulswamini Bangales and Jewellery</h1>
 
         <p class="subtitle">
-            Thank you for visiting us! 💗<br>
-            Share your experience in just 3 clicks.
+            Thank you for visiting us! 💖
+            <br>
+            We would love to hear about your experience.
         </p>
+
     </div>
 
-    <p class="message"
-       th:if="${message}"
-       th:text="${message}">
+    <h3 class="section-title">1. How was your experience?</h3>
+
+    <div class="rating-options">
+
+        <label class="rating-option">
+            <input type="radio" name="rating" value="3" required>
+            <span class="rating-box">⭐⭐⭐<br>Good</span>
+        </label>
+
+        <label class="rating-option">
+            <input type="radio" name="rating" value="4" required>
+            <span class="rating-box">⭐⭐⭐⭐<br>Very Good</span>
+        </label>
+
+        <label class="rating-option">
+            <input type="radio" name="rating" value="5" required>
+            <span class="rating-box">⭐⭐⭐⭐⭐<br>Excellent</span>
+        </label>
+
+    </div>
+
+    <h3 class="section-title">2. Share Your Experience on Google</h3>
+
+    <p class="subtitle">
+        Your honest feedback helps us improve our service
+        and helps other customers discover our shop.
     </p>
 
-    <form th:action="@{/submit-review}" method="post">
+    <button type="button" class="review-btn" onclick="openGoogleReview()">
+        Write a Google Review ↗
+    </button>
 
-        <input type="hidden"
-               th:if="${_csrf != null}"
-               th:name="${_csrf.parameterName}"
-               th:value="${_csrf.token}">
-
-        <h3 class="section-title">1. How was your experience?</h3>
-
-        <div class="rating-options">
-
-            <label class="rating-option">
-                <input type="radio"
-                       name="rating"
-                       value="3"
-                       required>
-                <span class="rating-box">⭐⭐⭐<br>Good</span>
-            </label>
-
-            <label class="rating-option">
-                <input type="radio"
-                       name="rating"
-                       value="4"
-                       required>
-                <span class="rating-box">⭐⭐⭐⭐<br>Very Good</span>
-            </label>
-			
-			<label class="rating-option">
-			    <input type="radio"
-			           name="rating"
-			           value="5"
-			           required>
-			    <span class="rating-box">⭐⭐⭐⭐⭐<br>Excellent</span>
-			</label>
-        </div>
-
-        <h3 class="section-title">2. Choose one comment</h3>
-
-        <p class="subtitle">
-            Select the option that best matches your experience.
-        </p>
-
-        <div th:each="comment, stat : ${commentOptions}">
-
-            <label class="comment-option">
-
-                <input type="radio"
-                       name="comment"
-                       th:value="${comment}"
-                       required>
-
-                <span th:text="${comment}"></span>
-
-            </label>
-
-        </div>
-
-        <button type="submit" class="submit-btn">
-            Submit Feedback 💗
-        </button>
-
-    </form>
+    <p class="note">
+        Please share your honest experience on Google.
+        Your review is completely your choice.
+    </p>
 
     <div class="footer">
-        Your feedback helps us serve you better.
+        Thank you for supporting our shop! 💗
     </div>
 
 </div>
+
+<script>
+    function openGoogleReview() {
+        const rating = document.querySelector('input[name="rating"]:checked');
+
+        if (!rating) {
+            alert("Please select your rating first.");
+            return;
+        }
+
+        window.open(
+            "https://share.google/Zqh18FuS0JJtkT4KQ",
+            "_blank",
+            "noopener,noreferrer"
+        );
+    }
+</script>
 
 </body>
 </html>
